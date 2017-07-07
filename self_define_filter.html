@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script src="angular.min.js"></script>
+    	<title>自定义过滤器</title>
+    </head>
+    <body ng-app="app">
+
+	<div ng-controller="myCtrl">
+		
+
+<input type="text" ng-model="str">
+<p>{{str|uperFirst}}</p>
+
+	</div>
+
+
+
+<script type="text/javascript">
+	var app = angular.module("app",[]);
+	app.controller('myCtrl', function($scope) {
+    
+});
+	//定义过滤器
+	//传入两个参数，第一个是过滤器名称，第二个是一个function函数，定义其作用
+	app.filter("uperFirst",function(){
+		return function(str){
+			if(str===undefined){return;}
+			else{
+		  return str.slice(0,1).toUpperCase()+str.slice(1);
+		}
+	}
+	});
+	</script>
+    </body>
+</html>

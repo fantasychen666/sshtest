@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>单向数据绑定</title>
+    <script src="angular.min.js"></script>
+    </head>
+    <body ng-app="app">
+<h2>单向数据绑定 Model--View层</h2>
+
+<div ng-controller="myctrl">
+{{uname}}
+<div ng-bind="uname"></div>
+<div >{{stu}}</div>
+展示多个属性的值
+<div ng-bind-template="{{stu}},{{uname}}"></div>
+
+
+
+</div>
+
+
+
+
+
+<script type="text/javascript">
+	var app = angular.module("app",[]);
+	app.controller("myctrl",["$scope",function($scope){
+			$scope.uname = "夏末-Model 绑定的数据";
+			$scope.stu = {"name":"小明","age":26};
+	}]);
+
+
+
+</script>
+
+    </body>
+</html>

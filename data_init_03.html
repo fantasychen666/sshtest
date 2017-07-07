@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>数据初始化 +数据绑定</title>
+        <script src="angular.min.js"></script>
+    </head>
+    <body ng-app="app" ng-init="msg='I am the init information!'">
+
+
+ <div ng-controller="myctrl" ng-init="self_info='i am self_information!!!'">
+ 	<div>
+      第一个info:{{self_info}} <br>
+      第一个msg:{{msg}}  
+    </div>
+
+ </div>
+
+<div>
+	第二个info:{{self_info}} <br>
+    第二个msg:{{msg|uppercase}}
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+	var app=angular.module("app",[]);
+	app.controller("myctrl",["$scope",function($scope){
+
+	}]);
+
+</script>
+    </body>
+</html>

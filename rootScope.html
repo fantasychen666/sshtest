@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    <script src="angular.min.js"></script>
+    </head>
+    <body ng-app="app" ng-init="name='小明'">
+	<h2>根作用域</h2>
+	{{name}}
+<div ng-controller="ctrl">
+		{{name}}
+<h3>{{lastname}}</h3>
+<ul>
+	<li ng-repeat="key in names">{{key}}{{lastname}}</li>
+</ul>
+</div>
+<h4>{{lastname}}</h4>
+
+
+
+
+
+
+<script type="text/javascript">
+	var app = angular.module("app",[]);
+	app.controller("ctrl",function($scope,$rootScope){
+		$scope.names = ["Emil", "Tobias", "Linus"];
+        $rootScope.lastname = "Refsnes";
+	});
+</script>
+    </body>
+</html>

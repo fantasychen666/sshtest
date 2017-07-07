@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>双向数据绑定Model->View</title>
+   	<script src="angular.min.js"></script>
+    </head>
+    <body ng-app="app">
+	<div ng-controller="myctrl">
+		
+<form action="">
+
+	<input type="text" ng-model="msg" required ng-change="change()">
+	<input type="submit" value="提交">
+	<div>{{msg}}</div>
+	<div>{{chmsg}}</div>
+	输入a<input type="tel" ng-model="a" ng-change="show()"><br>
+	输入b<input type="tel" ng-model="b" ng-change="show()">
+	<div>{{a}}+{{b}}={{sum}}</div>
+</form>
+
+	</div>
+
+
+
+<script type="text/javascript">
+	var app = angular.module("app",[]);
+	app.controller("myctrl",["$scope",function($scope){
+		$scope.change=function(){
+			console.log($scope.msg);
+			$scope.chmsg ="=="+$scope.msg+"==";
+		}
+		$scope.show=function(){
+		$scope.sum = parseInt($scope.a)+parseInt($scope.b);
+	}
+	}]);
+
+</script>
+    </body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script src="angular.min.js"></script>
+        <style>
+	#div1{
+		width: 300px;height: 300px;
+		background: skyblue;
+		text-align: center;
+		border: 3px solid red;
+	}
+
+        </style>
+    </head>
+    <body ng-app="app">
+<h1>angularjs常见事件</h1>
+
+<div ng-controller="myctrl">
+<input type="button" value="单击" ng-click="danji()">
+<input type="button" value="双击" ng-click="shuangji()">
+<span>单机显示：{{msg}}</span>
+<h2>{{random}}</h2>
+<div ng-mouseenter="mousein()" ng-mouseleave="leave()" id="div1">我是一个DIV <br>{{inrandom}} <br> {{outrandom}}</div>
+
+
+请输入<input type="text" ng-blur="jiaodian()"  ng-focus="jd()" ng-change="change()" ng-model="info" required placeholde="输入框">
+<h3>{{text1}}</h3>
+<p>输入的信息：{{info}}</p>
+<p>ng-change产生的随机数{{changeText}}</p>
+</div>
+
+
+
+
+
+<script type="text/javascript">
+	var app = angular.module("app",[]);
+	app.controller("myctrl",["$scope",function($scope){
+		$scope.danji=function(){
+			$scope.msg = "message";
+		};
+		$scope.shuangji=function(){
+			$scope.random = Math.random()*10;
+		};
+		$scope.mousein = function(){
+			$scope.inrandom = parseInt(Math.random()*100);
+		};
+		$scope.leave = function(){
+			$scope.outrandom = parseInt(Math.random()*1000);
+		};
+		$scope.jiaodian=function(){
+			$scope.text1 = "失去焦点时显示的内容";
+		};
+		$scope.jd = function(){
+			$scope.text1 = "";
+		};
+		$scope.change=function(){
+			$scope.changeText = parseInt(Math.random()*88+80);
+		};
+
+	}]);
+</script>
+
+    </body>
+</html>

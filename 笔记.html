@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+	<script>
+ -- 2017.07.03--
+一、常见的事件
+	1.单机 ng-click
+	2.双击 ng-dbclick
+	3.鼠标移入 ng-mouseenter
+	4.鼠标移出 ng-mouseoleave
+	5.失去焦点 ng-blur
+	6.文本框值的改变
+		ng-change   ng-change触发时，文本框内的内容是经过trim处理的
+
+二、数据绑定
+	1.单向数据绑定 见代码  控制层直接定义$scope.数据名
+	2.双向数据绑定  视图层定义ng-model 
+	3.数据的初始化
+		ng-init 
+
+三、作用域
+	因为控制器最终和HTML节点关联，而节点之间又存在包含关系，导致控制器之间也有包含关系。
+	最终导致$scope之间有不同的作用域		
+	根作用域 $rootScope  和app绑定，作用域的范围是整个app
+	ng-init绑定在$rootScope上，范围就是整个app
+
+	子作用域 $scope
+		和控制器绑定，作用域的范围就是控制器的范围
+	
+四.内置过滤器
+	Angularjs中使用过滤器进行格式化展示数据 在{{}}使用|(管道符号)
+	如果需要传递参数，使用:来分隔传递的参数
+	过滤器的使用还可以通过|来添加到指令中
+
+	9个过滤器
+	1.currency 将数字格式化为货币格式
+		 默认格式是$10.00  如果需要使用其他符号，格式：  currency:"符号￥"
+	2.date 格式化日期
+	3.filter 从数组中选择一个子集 
+		如果过滤的条件是一个对象，最后的}后需要加一个空格   {{arr|filter{"name":"jack"} }}
+	4.lowercase  转换为小写
+	5.uppercase  转换为大写
+	6.orderBy    排序
+				无参数：默认排序，升序
+				字符串：将对象数组中按照对应的属性名进行排序
+				如果需要降序，需添加第二个参数，true(即降序)
+				或：
+				字符串前面添加"+":表示升序
+						  添加"-":表示降序
+				数组：按照多个属性进行排序，第一个相同就比较第二个	
+						orderBy:["age","id"] //先按照年龄排序，相同时按照id排序	  
+	7.json:将对象转换为json格式
+	8.number    保留有效小数，同时给千位添加分隔符；如果没有参数，默认保留3位有效小数位
+				参数为正 保留小数后
+				参数为负 保留小数点前
+	9.limitTo   限制长度  参数为正 从头截取  负数 从后面截取
+
+五.自定义过滤器
+
+	调用filter方法，定义一个过滤器
+
+以下实例自定义一个过滤器 reverse，将字符串反转：
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    $scope.msg = "Runoob";
+});
+app.filter('reverse', function() { //可以注入依赖
+    return function(text) {
+        return text.split("").reverse().join("");
+    }
+});
+
+
+
+
+
+
+笔记列表：
+		1、uppercase，lowercase 大小写转换
+	{{ "lower cap string" | uppercase }}   // 结果：LOWER CAP STRING
+	{{ "TANK is GOOD" | lowercase }}      // 结果：tank is good
+	2、date 格式化
+	{{1490161945000 | date:"yyyy-MM-dd HH:mm:ss"}} // 2017-03-22 13:52:25
+	3、number 格式化（保留小数）
+	{{149016.1945000 | number:2}}
+	4、currency货币格式化
+	{{ 250 | currency }}            // 结果：$250.00
+	{{ 250 | currency:"RMB ￥ " }}  // 结果：RMB ￥ 250.00
+	5、filter查找
+	输入过滤器可以通过一个管道字符（|）和一个过滤器添加到指令中，该过滤器后跟一个冒号和一个模型名称。
+	filter 过滤器从数组中选择一个子集
+	 // 查找name为iphone的行
+	{{ [{"age": 20,"id": 10,"name": "iphone"},
+	{"age": 12,"id": 11,"name": "sunm xing"},
+	{"age": 44,"id": 12,"name": "test abc"}
+	] | filter:{'name':'iphone'} }}        
+	6、limitTo 截取
+	{{"1234567890" | limitTo :6}} // 从前面开始截取6位
+	{{"1234567890" | limitTo:-4}} // 从后面开始截取4位
+	7、orderBy 排序
+	 // 根id降序排
+	{{ [{"age": 20,"id": 10,"name": "iphone"},
+	{"age": 12,"id": 11,"name": "sunm xing"},
+	{"age": 44,"id": 12,"name": "test abc"}
+	] | orderBy:'id':true }}
+
+	// 根据id升序排
+	{{ [{"age": 20,"id": 10,"name": "iphone"},
+	{"age": 12,"id": 11,"name": "sunm xing"},
+	{"age": 44,"id": 12,"name": "test abc"}
+	] | orderBy:'id' }}
+
+</script>
+作用:复习当天代码
+	 练习：过滤器的内容
+		1.文本框输入内容，在文本框下方同步显示
+		 	数字：改成货币形式
+		 	字符串：截取前面3个
+		 			截取后面3个
+		格式化日期 2017年7月3日  17点12分23秒
+		创建一个对象数组(id name age)，filter后只显示名字中含有m的人
+		按照 id name age 分别排序一次  
+		2.自定义2个过滤器
+		(1)字符串反转   将字符串奇数位变大写
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </body>
+</html>

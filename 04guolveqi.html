@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <script src="angular.min.js"></script>
+    </head>
+    <body ng-app="app">
+
+<ul ng-controller="myCtrl">
+	<h4>字母转大小写：</h4>
+	<li>这儿是元数据：{{str}}</li>
+	<li>小写：{{str|lowercase}}</li>
+	<li>大写：{{str|uppercase}}</li>
+	<li>-----------------------</li>
+	<li>{{money|currency:"￥"}}</li>
+	<li>-----------------------</li>
+	<li>格式化当天日期:{{d|date:"yyyy-MM-dd HH:mm:ss"}}</li>
+
+	<li>从数组中选择一个子集：</li>
+	<li>{{arr|filter:"a"}}</li>
+	<li>{{stus|filter:{"age":18} }}</li>
+	<li>----------------------</li>
+	<li>以下是 转换为json格式 </li>
+	<li>{{student|json}}</li>
+	limitTo限制长度
+	<li>{{arr|limitTo:3}}</li>
+	<li>{{149016.1945000 | number:2}}</li>
+	<li><input type="number" ng-model="num"><span>{{num|number:-2}}</span></li>
+	<li>以下是orderBy排序</li>
+	<li>{{arr1|orderBy}}</li>
+	<li>-------------------</li>
+	<li>{{stus|orderBy:"id":true}}</li>
+	<li>--------------</li>
+	<li>{{stus|orderBy:"age"}}</li>
+
+
+	<li>---------------</li>
+	<li>---------------</li>
+	<li ng-repeat="n in arr|filter:'i'">{{n}}</li>
+	
+	<div ng-repeat="n in arr" ng-switch="n">
+		<li ng-switch-when="jack">{{n}}</li>
+		<li ng-switch-when="小明">{{n}}</li>
+		<li ng-switch-when="小红">{{n}}</li>
+
+	</div>
+</ul>
+
+
+
+
+<script type="text/javascript">
+	var app = angular.module("app",[]);
+	app.controller("myCtrl",function($scope){
+		$scope.str = "I lOvE CoDiNG";
+		$scope.money = 888;
+		$scope.d = new Date();
+		$scope.arr = ["小明","小红","jack","Tomj","alice","john"];
+		$scope.stus = [{"id":23,"name":"小明","age":20},
+		{"id":24,"name":"小红","age":28},
+		{"id":50,"name":"小张","age":16},
+		{"id":3,"name":"TOM","age":18},
+		];
+		$scope.student = new Object();
+		$scope.student.id = 888;
+		$scope.student.uname = "JACK";
+		$scope.student.age = 18;
+		$scope.arr1 = [32,5,7877,88,222,1,-9];
+	});
+</script>
+    </body>
+</html>
